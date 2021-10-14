@@ -1,6 +1,9 @@
-jupyter nbconvert training_image.ipynb --to script --output trainer/task.py
+jupyter nbconvert training_image.ipynb --to script --output trainer/task
 gcloud builds submit --tag "gcr.io/ml-pipelines-showcase/heart:training"
 
 
 jupyter nbconvert tuning.ipynb --to script --output trainer/task.py
 gcloud builds submit --tag "gcr.io/ml-pipelines-showcase/heart:tuning"
+
+gcloud beta ai tensorboards create --display-name hearts_training \
+  --project ml-pipelines-showcase
